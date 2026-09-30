@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NOFOMO - Hunter Quests</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #101014;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .xp {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .card {
+            background: #1b1b22;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+        }
+
+        .completed {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>⚔️ HUNTER QUESTS</h1>
+
+<div class="xp">
+    XP: <span id="xp">0</span>
+</div>
+
+
+<div class="card">
+    <h2>🏃 100M HUNTER RUN</h2>
+    <p>Walk or run 100 metres.</p>
+    <p>Reward: +100 XP</p>
+
+    <button onclick="completeQuest(this, 100)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>💪 PUSH-UP TRIAL</h2>
+    <p>Complete 5–10 comfortable push-ups.</p>
+    <p>Reward: +100 XP</p>
+
+    <button onclick="completeQuest(this, 100)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>🦵 SQUAT TRIAL</h2>
+    <p>Complete 10 comfortable bodyweight squats.</p>
+    <p>Reward: +100 XP</p>
+
+    <button onclick="completeQuest(this, 100)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>🚶 500M WALK</h2>
+    <p>Walk 500 metres without using your phone.</p>
+    <p>Reward: +150 XP</p>
+
+    <button onclick="completeQuest(this, 150)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>📵 PHONE ESCAPE</h2>
+    <p>Keep your phone away for 30 minutes.</p>
+    <p>Reward: +150 XP</p>
+
+    <button onclick="completeQuest(this, 150)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>🧘 FOCUS TRIAL</h2>
+    <p>Sit quietly and stay away from your phone for 10 minutes.</p>
+    <p>Reward: +100 XP</p>
+
+    <button onclick="completeQuest(this, 100)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>🔥 HUNTER COMBO</h2>
+    <p>
+        Complete 100M walking/running + 5–10 push-ups.
+    </p>
+
+    <p>Reward: +250 XP</p>
+
+    <button onclick="completeQuest(this, 250)">
+        COMPLETE
+    </button>
+</div>
+
+
+<div class="card">
+    <h2>👹 CRAZY QUEST</h2>
+
+    <p id="randomQuest">
+        Generate your random mission.
+    </p>
+
+    <button onclick="generateQuest()">
+        🎲 GENERATE
+    </button>
+</div>
+
+
+<script>
+
+let xp = Number(localStorage.getItem("hunterXP")) || 0;
+
+document.getElementById("xp").textContent = xp;
+
+
+function completeQuest(button, reward) {
+
+    xp += reward;
+
+    localStorage.setItem("hunterXP", xp);
+
+    document.getElementById("xp").textContent = xp;
+
+    button.textContent = "✓ COMPLETED";
+
+    button.classList.add("completed");
+
+    button.disabled = true;
+
+    alert("⚔️ QUEST COMPLETE!\n\n+" + reward + " XP");
+}
+
+
+function generateQuest() {
+
+    const quests = [
+
+        "🏃 Walk or run 200 metres.",
+        "💪 Complete 10 comfortable push-ups.",
+        "🦵 Complete 15 comfortable squats.",
+        "🚶 Walk for 10 minutes without your phone.",
+        "📵 Stay away from your phone for 45 minutes.",
+        "🧘 Stay completely phone-free for 20 minutes.",
+        "🔥 Do the 100M + push-up Hunter Combo.",
+        "🌳 Go outside and walk for 10 minutes."
+
+    ];
+
+    const random =
+        quests[Math.floor(Math.random() * quests.length)];
+
+    document.getElementById("randomQuest").textContent = random;
+}
+
+</script>
+
+</body>
+</html>
