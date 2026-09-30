@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Away - Missions</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #101010;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
+    background: #171717;
+    border-right: 1px solid #292929;
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    padding-left: 10px;
+}
+
+.logo span {
+    color: #ff9f1c;
+}
+
+.nav-item {
+    display: block;
+    padding: 15px;
+    margin: 8px 0;
+    border-radius: 10px;
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #252525;
+    color: #ff9f1c;
+}
+
+/* MAIN */
+.main {
+    margin-left: 230px;
+    padding: 35px;
+    max-width: 1400px;
+}
+
+/* TOP */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #888;
+}
+
+.profile {
+    background: #191919;
+    border: 1px solid #2d2d2d;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-align: right;
+}
+
+.profile small {
+    color: #777;
+}
+
+.profile strong {
+    display: block;
+    color: #ff9f1c;
+    margin-top: 4px;
+}
+
+/* STATS */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: #191919;
+    border: 1px solid #2b2b2b;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.stat-icon {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.stat-title {
+    color: #777;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 27px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+/* XP BAR */
+.xp-box {
+    background: #191919;
+    border: 1px solid #2b2b2b;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.xp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.xp-header span:first-child {
+    color: #aaa;
+}
+
+.xp-header span:last-child {
+    color: #ff9f1c;
+    font-weight: bold;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #292929;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #ff9f1c;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+/* GRID */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* SECTION */
+.section {
+    background: #191919;
+    border: 1px solid #2b2b2b;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    font-size: 21px;
+}
+
+.section-title span {
+    color: #777;
+    font-size: 13px;
+}
+
+/* MISSIONS */
+.mission {
+    border: 1px solid #2d2d2d;
+    background: #151515;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+    transition: 0.2s;
+}
+
+.mission:hover {
+    border-color: #555;
+}
+
+.mission.completed {
+    opacity: 0.55;
+}
+
+.mission-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mission-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mission-icon {
+    font-size: 25px;
+}
+
+.mission-name h3 {
+    font-size: 16px;
+}
+
+.mission-name p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.xp {
+    color: #ff9f1c;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.complete-btn {
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    padding: 11px;
+    border-radius: 8px;
+    background: #ff9f1c;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.complete-btn:hover {
+    background: #ffb340;
+}
+
+.complete-btn:disabled {
+    background: #303030;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/* BOSS */
+.boss {
+    background: linear-gradient(135deg, #211a10, #191919);
+    border: 1px solid #5a3b12;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.boss h2 {
+    color: #ff9f1c;
+    margin-bottom: 8px;
+}
+
+.boss p {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.boss-time {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.boss-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #ff9f1c;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boss-btn.stop {
+    background: #d9534f;
+    color: white;
+}
+
+/* RANDOM */
+.random {
+    text-align: center;
+}
+
+.random-icon {
+    font-size: 50px;
+    margin: 10px 0;
+}
+
+.random-result {
+    min-height: 70px;
+    color: #aaa;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.random-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ff9f1c;
+    background: transparent;
+    color: #ff9f1c;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.random-btn:hover {
+    background: #ff9f1c;
+    color: #111;
+}
+
+/* ACH
