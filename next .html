@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOFOMO Missions</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#050505;
+    color:white;
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#111;
+    border:1px solid #333;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-top:0;
+}
+
+.reward{
+    color:#ffb300;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ffb300;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#111;
+    display:flex;
+    justify-content:space-around;
+    padding:15px 0;
+    border-top:1px solid #333;
+}
+
+.nav a{
+    color:white;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🎯 Missions</h1>
+    <p>Complete missions and earn bonus XP</p>
+</div>
+
+<div id="missions"></div>
+
+<div class="nav">
+    <a href="dashboard.html">🏠 Home</a>
+    <a href="missions.html">🎯 Missions</a>
+    <a href="ranks.html">👑 Ranks</a>
+</div>
+
+<script>
+
+let progress = JSON.parse(
+    localStorage.getItem("phoneAwayData")
+) || { xp:0 };
+
+const missions = [
+{
+    id:1,
+    title:"30 Minute Focus",
+    reward:50
+},
+{
+    id:2,
+    title:"1 Hour Digital Detox",
+    reward:100
+},
+{
+    id:3,
+    title:"Morning Warrior",
+    reward:250
+},
+{
+    id:4,
+    title:"Read A Book",
+    reward:150
+}
+];
+
+function renderMissions(){
+
+    const container =
+        document.getElementById("missions");
+
+    container.innerHTML =
+        missions.map(m => `
+        <div class="card">
+            <h3>${m.title}</h3>
+            <p class="reward">
+                Reward: ${m.reward} XP
+            </p>
+
+            <button onclick="completeMission(${m.id})">
+                Complete Mission
+            </button>
+        </div>
+    `).join("");
+}
+
+function completeMission(id){
+
+    const mission =
+        missions.find(m => m.id === id);
+
+    progress.xp += mission.reward;
+
+    localStorage.setItem(
+        "phoneAwayData",
+        JSON.stringify(progress)
+    );
+
+    alert(
+        `Mission Complete!\n+${mission.reward} XP`
+    );
+}
+
+renderMissions();
+
+</script>
+
+</body>
+</html>
