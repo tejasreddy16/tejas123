@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunter Tasks</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: white;
+            padding: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .xp {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .task {
+            background: #17171d;
+            border: 1px solid #292932;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .task h2 {
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .task p {
+            color: #aaa;
+            margin: 0 0 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚔️ HUNTER TASKS</h1>
+    <div class="subtitle">Complete quests. Earn XP. Level up.</div>
+
+    <div class="xp">
+        XP: <span id="xp">0</span>
+    </div>
+
+    <div class="task">
+        <h2>🏃 100M Hunter Run</h2>
+        <p>Walk or run 100 metres comfortably.</p>
+        <button onclick="completeTask('100M Hunter Run', 100)">
+            COMPLETE • +100 XP
+        </button>
+    </div>
+
+    <div class="task">
+        <h2>💪 Push-Up Trial</h2>
+        <p>Do 5 comfortable push-ups with good form.</p>
+        <button onclick="completeTask('Push-Up Trial', 100)">
+            COMPLETE • +100 XP
+        </button>
+    </div>
+
+    <div class="task">
+        <h2>🦵 Squat Trial</h2>
+        <p>Do 10 comfortable bodyweight squats.</p>
+        <button onclick="completeTask('Squat Trial', 100)">
+            COMPLETE • +100 XP
+        </button>
+    </div>
+
+    <div class="task">
+        <h2>🚶 500M Hunter Walk</h2>
+        <p>Walk 500 metres without using your phone.</p>
+        <button onclick="completeTask('500M Hunter Walk', 150)">
+            COMPLETE • +150 XP
+        </button>
+    </div>
+
+    <div class="task">
+        <h2>📵 Phone Escape</h2>
+        <p>Stay away from your phone for 30 minutes.</p>
+        <button onclick="completeTask('Phone Escape', 150)">
+            COMPLETE • +150 XP
+        </button>
+    </div>
+
+    <script>
+        let xp = Number(localStorage.getItem("hunterXP")) || 0;
+
+        document.getElementById("xp").textContent = xp;
+
+        function completeTask(taskName, reward) {
+
+            xp += reward;
+
+            localStorage.setItem("hunterXP", xp);
+
+            window.location.href =
+                "congratulations.html?xp=" + reward +
+                "&quest=" + encodeURIComponent(taskName);
+        }
+    </script>
+
+</body>
+</html>
