@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Away 🔥</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="app">
+
+    <header>
+      <div class="logo">📵</div>
+      <div>
+        <h1>Phone Away</h1>
+        <p>Get rewarded for NOT using your phone.</p>
+      </div>
+    </header>
+
+    <section class="profile card">
+      <div>
+        <span class="muted">PROFILE</span>
+        <h2 id="username">Hunter</h2>
+      </div>
+
+      <div class="rank">
+        <span id="rankName">Phone Beginner</span>
+        <strong id="xpText">0 XP</strong>
+      </div>
+    </section>
+
+    <section class="streak card">
+      <div class="streak-icon">🔥</div>
+      <div>
+        <span class="muted">CURRENT STREAK</span>
+        <h2><span id="streak">0</span> days</h2>
+      </div>
+    </section>
+
+    <section class="timer-card card">
+      <span class="muted">PHONE AWAY SESSION</span>
+
+      <div id="timer">00:00:00</div>
+
+      <div class="goal">
+        Daily goal: <strong id="goalText">1 hour</strong>
+      </div>
+
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+
+      <p id="status">Ready to begin.</p>
+
+      <div class="buttons">
+        <button id="startBtn" onclick="startSession()">🔥 Start Streak</button>
+        <button id="stopBtn" onclick="stopSession()" class="secondary" disabled>
+          Stop Session
+        </button>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat card">
+        <span>⭐ XP</span>
+        <strong id="xp">0</strong>
+      </div>
+
+      <div class="stat card">
+        <span>⏱️ Total Away</span>
+        <strong id="totalAway">0m</strong>
+      </div>
+
+      <div class="stat card">
+        <span>🏆 Best Streak</span>
+        <strong id="bestStreak">0</strong>
+      </div>
+    </section>
+
+    <section class="card achievements">
+      <span class="muted">ACHIEVEMENTS</span>
+
+      <div class="achievement-list">
+        <div id="a30" class="achievement locked">
+          ⏱️ <b>30 Minute Warrior</b>
+          <small>Stay away for 30 minutes.</small>
+        </div>
+
+        <div id="a60" class="achievement locked">
+          🛡️ <b>Phone Escaper</b>
+          <small>Complete a 1 hour session.</small>
+        </div>
+
+        <div id="a7" class="achievement locked">
+          🔥 <b>7 Day Streak</b>
+          <small>Reach a 7 day streak.</small>
+        </div>
+
+        <div id="a30day" class="achievement locked">
+          👑 <b>Phone Legend</b>
+          <small>Reach a 30 day streak.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="card history">
+      <div class="section-title">
+        <span class="muted">RECENT SESSIONS</span>
+        <button class="clear" onclick="resetData()">Reset</button>
+      </div>
+
+      <div id="historyList">
+        <p class="empty">No sessions yet.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>📵 The app rewards you for spending less time on your phone.</p>
+      <p class="tiny">Browser-based timer • Data stored locally on this device</p>
+    </footer>
+
+  </main>
+
+  <div id="celebration" class="celebration hidden">
+    <div class="celebration-box">
+      <div id="celebrationIcon">🔥</div>
+      <h2 id="celebrationTitle">STREAK COMPLETE!</h2>
+      <p id="celebrationText"></p>
+      <button onclick="closeCelebration()">Continue</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
